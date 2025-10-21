@@ -2,33 +2,35 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { ArrowRight, Lock, Package, CheckCircle2, DollarSign } from "lucide-react";
-
-const steps = [
-  {
-    icon: DollarSign,
-    title: "Buyer sends payment",
-    description: "Customer initiates purchase and payment through your platform",
-  },
-  {
-    icon: Lock,
-    title: "SafeT holds funds in escrow",
-    description: "Payment is securely held until transaction conditions are met",
-  },
-  {
-    icon: Package,
-    title: "Seller delivers",
-    description: "Product or service is delivered as agreed",
-  },
-  {
-    icon: CheckCircle2,
-    title: "SafeT releases payment",
-    description: "Funds automatically released to seller upon confirmation",
-  },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const HowItWorks = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { t } = useLanguage();
+
+  const steps = [
+    {
+      icon: DollarSign,
+      title: t("step1Title"),
+      description: t("step1Desc"),
+    },
+    {
+      icon: Lock,
+      title: t("step2Title"),
+      description: t("step2Desc"),
+    },
+    {
+      icon: Package,
+      title: t("step3Title"),
+      description: t("step3Desc"),
+    },
+    {
+      icon: CheckCircle2,
+      title: t("step4Title"),
+      description: t("step4Desc"),
+    },
+  ];
 
   return (
     <section ref={ref} className="bg-background py-24 px-4">
@@ -40,10 +42,10 @@ export const HowItWorks = () => {
           className="mb-16 text-center"
         >
           <h2 className="mb-4 text-4xl font-bold text-foreground md:text-5xl">
-            How it works
+            {t("howItWorksTitle")}
           </h2>
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-            Simple, secure, and transparent from start to finish
+            {t("howItWorksSubtitle")}
           </p>
         </motion.div>
 

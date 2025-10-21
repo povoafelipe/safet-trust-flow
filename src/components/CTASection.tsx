@@ -3,10 +3,12 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, MessageSquare } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const CTASection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { t } = useLanguage();
 
   return (
     <section ref={ref} className="relative overflow-hidden bg-gradient-to-br from-primary via-primary to-accent py-24 px-4">
@@ -19,11 +21,11 @@ export const CTASection = () => {
           transition={{ duration: 0.8 }}
         >
           <h2 className="mb-6 text-4xl font-bold text-primary-foreground md:text-6xl">
-            Build trust into your business
+            {t("ctaTitle")}
           </h2>
           
           <p className="mb-12 text-xl text-primary-foreground/90">
-            Join thousands of businesses using SafeT to create secure, trustworthy transactions
+            {t("ctaSubtitle")}
           </p>
 
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -32,7 +34,7 @@ export const CTASection = () => {
               variant="secondary"
               className="group h-14 bg-background px-8 text-lg font-semibold text-primary hover:bg-background/90"
             >
-              Get API Access
+              {t("getApiAccess")}
               <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Button>
             
@@ -42,7 +44,7 @@ export const CTASection = () => {
               className="h-14 border-2 border-primary-foreground/30 bg-transparent px-8 text-lg font-semibold text-primary-foreground hover:border-primary-foreground hover:bg-primary-foreground/10"
             >
               <MessageSquare className="mr-2 h-5 w-5" />
-              Talk to Our Team
+              {t("talkToTeam")}
             </Button>
           </div>
         </motion.div>

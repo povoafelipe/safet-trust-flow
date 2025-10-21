@@ -3,9 +3,11 @@ import { AuroraBackground } from "@/components/ui/aurora-background";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useState, useEffect } from "react";
-import safetLogo from "@/assets/safet-logo.png";
+import safetLogo from "@/assets/safet-logo-icon.png";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const HeroSection = () => {
+  const { t } = useLanguage();
   const words = ["secure", "fast", "transparent", "intelligent", "beautiful"];
   const [currentWord, setCurrentWord] = useState(0);
 
@@ -36,7 +38,7 @@ export const HeroSection = () => {
           </motion.div>
 
           <h1 className="mb-6 text-6xl font-bold tracking-tight text-foreground md:text-7xl lg:text-8xl">
-            Trust every{" "}
+            {t("heroTitle1")}{" "}
             <span className="inline-block min-w-[300px]">
               <motion.span
                 key={currentWord}
@@ -46,11 +48,11 @@ export const HeroSection = () => {
                 transition={{ duration: 0.5 }}
                 className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"
               >
-                {words[currentWord]}
+                {t(words[currentWord])}
               </motion.span>
             </span>
             <br />
-            transaction
+            {t("heroTitle2")}
           </h1>
           
           <motion.p
@@ -59,7 +61,7 @@ export const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             className="mx-auto mb-12 max-w-3xl text-xl text-muted-foreground md:text-2xl"
           >
-            The digital escrow infrastructure that keeps payments safe until your deal is done.
+            {t("heroSubtitle")}
           </motion.p>
 
           <motion.div
@@ -72,7 +74,7 @@ export const HeroSection = () => {
               size="lg" 
               className="group h-14 bg-primary px-8 text-lg font-semibold transition-all hover:shadow-[0_0_30px_hsl(220,100%,56%/0.4)]"
             >
-              Start Integrating
+              {t("startIntegrating")}
               <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Button>
             <Button 
@@ -80,7 +82,7 @@ export const HeroSection = () => {
               variant="outline"
               className="h-14 border-2 px-8 text-lg font-semibold"
             >
-              See How It Works
+              {t("seeHowItWorks")}
             </Button>
           </motion.div>
         </motion.div>

@@ -3,10 +3,12 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Code2, ExternalLink } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const IntegrationSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { t } = useLanguage();
 
   const codeSnippet = `safet.createEscrow({
   buyer: "John",
@@ -26,24 +28,24 @@ export const IntegrationSection = () => {
           >
             <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">
               <Code2 className="h-4 w-4" />
-              Developer-friendly API
+              {t("apiAccess")}
             </div>
             
             <h2 className="mb-6 text-4xl font-bold text-foreground md:text-5xl">
-              Integrate in minutes, not months
+              {t("integrationTitle")}
             </h2>
             
             <p className="mb-8 text-lg text-muted-foreground">
-              Our intuitive API is designed for developers. Add secure escrow to your platform with just a few lines of code.
+              {t("integrationSubtitle")}
             </p>
 
             <div className="flex flex-col gap-4 sm:flex-row">
               <Button size="lg" className="bg-primary">
-                Get API Access
+                {t("getApiAccess")}
                 <ExternalLink className="ml-2 h-4 w-4" />
               </Button>
               <Button size="lg" variant="outline">
-                View Documentation
+                {t("viewDocumentation")}
               </Button>
             </div>
           </motion.div>

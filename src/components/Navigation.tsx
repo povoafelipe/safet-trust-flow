@@ -1,43 +1,21 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Globe } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import safetLogo from "@/assets/safet-logo.png";
+import safetLogo from "@/assets/safet-logo-horizontal.png";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [language, setLanguage] = useState<"en" | "pt">("en");
+  const { language, setLanguage, t } = useLanguage();
   const location = useLocation();
 
-  const toggleLanguage = () => {
-    setLanguage(language === "en" ? "pt" : "en");
-  };
-
-  const translations = {
-    en: {
-      home: "Home",
-      pricing: "Pricing",
-      contact: "Contact",
-      about: "About",
-      getStarted: "Get Started",
-    },
-    pt: {
-      home: "Início",
-      pricing: "Preços",
-      contact: "Contato",
-      about: "Sobre",
-      getStarted: "Começar",
-    },
-  };
-
-  const t = translations[language];
-
   const links = [
-    { to: "/", label: t.home },
-    { to: "/pricing", label: t.pricing },
-    { to: "/contact", label: t.contact },
-    { to: "/about", label: t.about },
+    { to: "/", label: t("home") },
+    { to: "/pricing", label: t("pricing") },
+    { to: "/contact", label: t("contact") },
+    { to: "/about", label: t("about") },
   ];
 
   return (
@@ -68,29 +46,55 @@ export const Navigation = () => {
 
           {/* Desktop CTA & Language Switcher */}
           <div className="hidden md:flex items-center gap-4">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={toggleLanguage}
-              className="gap-2"
-            >
-              <Globe className="h-4 w-4" />
-              {language.toUpperCase()}
-            </Button>
-            <Button size="sm">{t.getStarted}</Button>
+            <div className="flex items-center gap-1 rounded-lg bg-muted p-1">
+              <button
+                onClick={() => setLanguage("en")}
+                className={`px-3 py-1 rounded-md text-sm font-medium transition-all ${
+                  language === "en"
+                    ? "bg-background text-primary shadow-sm"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                EN
+              </button>
+              <button
+                onClick={() => setLanguage("pt")}
+                className={`px-3 py-1 rounded-md text-sm font-medium transition-all ${
+                  language === "pt"
+                    ? "bg-background text-primary shadow-sm"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                PT
+              </button>
+            </div>
+            <Button size="sm">{t("getStarted")}</Button>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="flex md:hidden items-center gap-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={toggleLanguage}
-              className="gap-1"
-            >
-              <Globe className="h-4 w-4" />
-              {language.toUpperCase()}
-            </Button>
+            <div className="flex items-center gap-1 rounded-lg bg-muted p-1">
+              <button
+                onClick={() => setLanguage("en")}
+                className={`px-2 py-1 rounded-md text-xs font-medium transition-all ${
+                  language === "en"
+                    ? "bg-background text-primary shadow-sm"
+                    : "text-muted-foreground"
+                }`}
+              >
+                EN
+              </button>
+              <button
+                onClick={() => setLanguage("pt")}
+                className={`px-2 py-1 rounded-md text-xs font-medium transition-all ${
+                  language === "pt"
+                    ? "bg-background text-primary shadow-sm"
+                    : "text-muted-foreground"
+                }`}
+              >
+                PT
+              </button>
+            </div>
             <Button
               variant="ghost"
               size="icon"
@@ -127,7 +131,7 @@ export const Navigation = () => {
                 </Link>
               ))}
               <Button size="sm" className="w-full">
-                {t.getStarted}
+                {t("getStarted")}
               </Button>
             </div>
           </motion.div>

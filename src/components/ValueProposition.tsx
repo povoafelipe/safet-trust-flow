@@ -2,28 +2,30 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Shield, Brain, Scale } from "lucide-react";
-
-const features = [
-  {
-    icon: Shield,
-    title: "Escrow-as-a-Service",
-    description: "Secure payment holding infrastructure that releases funds only when both parties confirm. Built for marketplaces, freelance platforms, and peer-to-peer commerce.",
-  },
-  {
-    icon: Brain,
-    title: "AI Fraud Detection",
-    description: "Machine learning algorithms analyze transactions in real-time, identifying suspicious patterns and protecting both buyers and sellers from fraud.",
-  },
-  {
-    icon: Scale,
-    title: "Dispute Mediation",
-    description: "Automated resolution system with human oversight. Quick, fair settlements that keep your business moving and your users satisfied.",
-  },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const ValueProposition = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { t } = useLanguage();
+
+  const features = [
+    {
+      icon: Shield,
+      title: t("escrowTitle"),
+      description: t("escrowDesc"),
+    },
+    {
+      icon: Brain,
+      title: t("aiTitle"),
+      description: t("aiDesc"),
+    },
+    {
+      icon: Scale,
+      title: t("disputeTitle"),
+      description: t("disputeDesc"),
+    },
+  ];
 
   return (
     <section ref={ref} className="bg-background py-24 px-4">
@@ -35,10 +37,10 @@ export const ValueProposition = () => {
           className="mb-16 text-center"
         >
           <h2 className="mb-4 text-4xl font-bold text-foreground md:text-5xl">
-            Built for trust at scale
+            {t("valueTitle")}
           </h2>
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-            The complete infrastructure to secure transactions between strangers
+            {t("valueSubtitle")}
           </p>
         </motion.div>
 

@@ -2,12 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Shield, Lock, CheckCircle } from "lucide-react";
-
-const badges = [
-  { icon: Shield, text: "Bacen Compliant" },
-  { icon: Lock, text: "Encrypted Payments" },
-  { icon: CheckCircle, text: "Verified KYC" },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const partners = [
   { name: "Dock", color: "text-primary" },
@@ -18,6 +13,13 @@ const partners = [
 export const TrustSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { t } = useLanguage();
+
+  const badges = [
+    { icon: Shield, text: t("bacenCompliant") },
+    { icon: Lock, text: t("encryptedPayments") },
+    { icon: CheckCircle, text: t("verifiedKyc") },
+  ];
 
   return (
     <section ref={ref} className="bg-background py-24 px-4">
@@ -29,10 +31,10 @@ export const TrustSection = () => {
           className="mb-16 text-center"
         >
           <h2 className="mb-4 text-4xl font-bold text-foreground md:text-5xl">
-            Built on trust and compliance
+            {t("trustTitle")}
           </h2>
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-            Industry-leading security standards and regulatory compliance
+            {t("trustSubtitle")}
           </p>
         </motion.div>
 
