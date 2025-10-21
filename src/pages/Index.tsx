@@ -1,3 +1,4 @@
+import { Navigation } from "@/components/Navigation";
 import { HeroSection } from "@/components/HeroSection";
 import { ValueProposition } from "@/components/ValueProposition";
 import { PaymentExperience } from "@/components/PaymentExperience";
@@ -9,6 +10,7 @@ import { CTASection } from "@/components/CTASection";
 const Index = () => {
   return (
     <div className="min-h-screen">
+      <Navigation />
       <HeroSection />
       <ValueProposition />
       <PaymentExperience />

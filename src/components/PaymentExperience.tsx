@@ -1,14 +1,20 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useRef } from "react";
 import { CreditCard, Smartphone, Shield } from "lucide-react";
 
 export const PaymentExperience = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
+  const phoneY = useTransform(scrollYProgress, [0, 0.5, 1], [100, 0, -50]);
+  const phoneRotate = useTransform(scrollYProgress, [0, 0.5, 1], [5, 0, -2]);
+  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="bg-muted py-24 px-4">
+    <section ref={containerRef} className="bg-muted py-24 px-4">
       <div className="mx-auto max-w-7xl">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <motion.div
@@ -36,15 +42,13 @@ export const PaymentExperience = () => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-            transition={{ duration: 0.8 }}
+            style={{ y: phoneY, rotateZ: phoneRotate }}
             className="relative"
           >
-            <div className="relative mx-auto w-full max-w-sm">
+            <div className="relative mx-auto w-full max-w-[280px]">
               {/* iPhone Mockup */}
-              <div className="relative overflow-hidden rounded-[3rem] border-8 border-foreground/10 bg-background shadow-2xl">
-                <div className="aspect-[9/19] bg-background p-6">
+              <div className="relative overflow-hidden rounded-[2.5rem] border-[12px] border-foreground/90 bg-foreground/10 shadow-2xl">
+                <div className="aspect-[9/16] bg-background p-4">
                   {/* Status Bar */}
                   <div className="mb-8 flex items-center justify-between text-xs">
                     <span className="font-medium">9:41</span>
