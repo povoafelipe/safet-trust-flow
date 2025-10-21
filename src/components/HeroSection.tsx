@@ -1,20 +1,11 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import safetLogo from "@/assets/safet-logo.png";
 
 export const HeroSection = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"],
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-
   const words = ["secure", "fast", "transparent", "intelligent", "beautiful"];
   const [currentWord, setCurrentWord] = useState(0);
 
@@ -26,9 +17,14 @@ export const HeroSection = () => {
   }, []);
 
   return (
-    <AuroraBackground className="min-h-screen" ref={containerRef}>
+    <AuroraBackground className="min-h-screen">
       <div className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 text-center">
-        <motion.div style={{ y, opacity }} className="max-w-5xl">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="max-w-5xl"
+        >
           {/* Logo */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -39,14 +35,9 @@ export const HeroSection = () => {
             <img src={safetLogo} alt="SafeT" className="h-16 w-auto" />
           </motion.div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="mb-6 text-6xl font-bold tracking-tight text-foreground md:text-7xl lg:text-8xl"
-          >
+          <h1 className="mb-6 text-6xl font-bold tracking-tight text-foreground md:text-7xl lg:text-8xl">
             Trust every{" "}
-            <span className="inline-block min-w-[300px] text-left">
+            <span className="inline-block min-w-[300px]">
               <motion.span
                 key={currentWord}
                 initial={{ opacity: 0, y: 20 }}
@@ -60,7 +51,7 @@ export const HeroSection = () => {
             </span>
             <br />
             transaction
-          </motion.h1>
+          </h1>
           
           <motion.p
             initial={{ opacity: 0, y: 20 }}

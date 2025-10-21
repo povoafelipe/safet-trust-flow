@@ -1,26 +1,16 @@
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import { CreditCard, Smartphone, Shield } from "lucide-react";
 
 export const PaymentExperience = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
-
-  const phoneY = useTransform(scrollYProgress, [0, 0.5, 1], [100, 0, -50]);
-  const phoneRotate = useTransform(scrollYProgress, [0, 0.5, 1], [5, 0, -2]);
-  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
-
   return (
-    <section ref={containerRef} className="bg-muted py-24 px-4">
+    <section className="bg-muted py-24 px-4">
       <div className="mx-auto max-w-7xl">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
           >
             <h2 className="mb-6 text-4xl font-bold text-foreground md:text-5xl">
               Seamless payment experience
@@ -42,7 +32,10 @@ export const PaymentExperience = () => {
           </motion.div>
 
           <motion.div
-            style={{ y: phoneY, rotateZ: phoneRotate }}
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, type: "spring" }}
+            viewport={{ once: true }}
             className="relative"
           >
             <div className="relative mx-auto w-full max-w-[280px]">
