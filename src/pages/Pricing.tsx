@@ -2,56 +2,59 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 import { Navigation } from "@/components/Navigation";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Pricing = () => {
+  const { t } = useLanguage();
+  
   const plans = [
     {
-      name: "Starter",
-      price: "Free",
-      description: "Perfect for individuals and small sellers",
+      name: t("starter"),
+      price: t("free"),
+      description: t("starterDesc"),
       features: [
-        "Up to 10 transactions/month",
-        "Basic escrow protection",
-        "Email support",
-        "Standard processing time",
-        "1.5% transaction fee",
+        t("upTo10Transactions"),
+        t("basicEscrow"),
+        t("emailSupport"),
+        t("standardProcessing"),
+        t("transactionFee15"),
       ],
-      cta: "Start Now",
+      cta: t("startNow"),
       popular: false,
     },
     {
-      name: "Pro",
+      name: t("pro"),
       price: "R$ 49",
-      period: "/month",
-      description: "Ideal for small businesses and growing teams",
+      period: t("perMonth"),
+      description: t("proDesc"),
       features: [
-        "Unlimited transactions",
-        "Advanced escrow protection",
-        "Priority support",
-        "API access",
-        "Fast processing",
-        "1.2% transaction fee",
-        "Fraud detection AI",
-        "Custom branding",
+        t("unlimitedTransactions"),
+        t("advancedEscrow"),
+        t("prioritySupport"),
+        t("apiAccess"),
+        t("fastProcessing"),
+        t("transactionFee12"),
+        t("fraudDetectionAi"),
+        t("customBranding"),
       ],
-      cta: "Start Now",
+      cta: t("startNow"),
       popular: true,
     },
     {
-      name: "Enterprise",
-      price: "Custom",
-      description: "For B2B partners and large organizations",
+      name: t("enterprise"),
+      price: t("custom"),
+      description: t("enterpriseDesc"),
       features: [
-        "Everything in Pro",
-        "White-label solution",
-        "Dedicated account manager",
-        "24/7 priority support",
-        "Custom integration",
-        "Negotiable fees",
-        "Insurance coverage",
-        "Mediation services",
+        t("everythingInPro"),
+        t("whiteLabelSolution"),
+        t("dedicatedAccountManager"),
+        t("support247"),
+        t("customIntegration"),
+        t("negotiableFees"),
+        t("insuranceCoverage"),
+        t("mediationServices"),
       ],
-      cta: "Talk to Sales",
+      cta: t("talkToSales"),
       popular: false,
     },
   ];
@@ -70,10 +73,10 @@ const Pricing = () => {
             className="text-center mb-16"
           >
             <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Simple, transparent pricing
+              {t("pricingTitle")}
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Choose the plan that best fits your business needs. All plans include basic escrow protection.
+              {t("pricingSubtitle")}
             </p>
           </motion.div>
 
@@ -94,7 +97,7 @@ const Pricing = () => {
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2">
                     <span className="bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-semibold">
-                      Most Popular
+                      {t("mostPopular")}
                     </span>
                   </div>
                 )}
@@ -145,9 +148,7 @@ const Pricing = () => {
             className="text-center mt-16"
           >
             <p className="text-muted-foreground">
-              All plans include basic fraud protection and secure payment processing.
-              <br />
-              Custom plans available for high-volume businesses.
+              {t("pricingFooterNote")}
             </p>
           </motion.div>
         </div>

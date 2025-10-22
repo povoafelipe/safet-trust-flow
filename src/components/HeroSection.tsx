@@ -8,13 +8,13 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 export const HeroSection = () => {
   const { t } = useLanguage();
-  const words = ["secure", "fast", "transparent", "intelligent", "beautiful"];
+  const words = ["secure", "fast", "intelligent", "transparent"];
   const [currentWord, setCurrentWord] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentWord((prev) => (prev + 1) % words.length);
-    }, 2000);
+    }, 3000);
     return () => clearInterval(interval);
   }, []);
 
@@ -39,7 +39,7 @@ export const HeroSection = () => {
 
           <h1 className="mb-6 text-6xl font-bold tracking-tight text-foreground md:text-7xl lg:text-8xl">
             {t("heroTitle1")}{" "}
-            <span className="inline-block min-w-[300px]">
+            <span className="inline-block min-w-[280px] md:min-w-[350px]">
               <motion.span
                 key={currentWord}
                 initial={{ opacity: 0, y: 20 }}

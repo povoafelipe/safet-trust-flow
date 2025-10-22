@@ -5,8 +5,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, MapPin, Check } from "lucide-react";
 import { Navigation } from "@/components/Navigation";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Contact = () => {
+  const { t } = useLanguage();
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -37,10 +39,10 @@ const Contact = () => {
             className="text-center mb-16"
           >
             <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Get in touch
+              {t("contactTitle")}
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Have questions about SafeT? We're here to help build trust into your business.
+              {t("contactSubtitle")}
             </p>
           </motion.div>
 
@@ -53,9 +55,9 @@ const Contact = () => {
               className="space-y-8"
             >
               <div>
-                <h2 className="text-3xl font-bold mb-6">Let's talk</h2>
+                <h2 className="text-3xl font-bold mb-6">{t("letsTalk")}</h2>
                 <p className="text-muted-foreground mb-8">
-                  Whether you're a developer looking to integrate SafeT or a business ready to scale with trust, we're here to help.
+                  {t("letsTalkDesc")}
                 </p>
               </div>
 
@@ -65,7 +67,7 @@ const Contact = () => {
                     <Mail className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-1">Email</h3>
+                    <h3 className="font-semibold mb-1">{t("email")}</h3>
                     <a
                       href="mailto:contato@safet.co"
                       className="text-muted-foreground hover:text-primary transition-colors"
@@ -80,16 +82,16 @@ const Contact = () => {
                     <MapPin className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-1">Location</h3>
-                    <p className="text-muted-foreground">São Paulo, Brazil</p>
+                    <h3 className="font-semibold mb-1">{t("locationTitle")}</h3>
+                    <p className="text-muted-foreground">{t("location")}</p>
                   </div>
                 </div>
               </div>
 
               <div className="bg-gradient-to-br from-primary/10 to-accent/10 p-6 rounded-2xl border border-primary/20">
-                <h3 className="font-semibold mb-2">Enterprise Solutions</h3>
+                <h3 className="font-semibold mb-2">{t("enterpriseSolutions")}</h3>
                 <p className="text-sm text-muted-foreground">
-                  Looking for white-label integration or custom pricing? Our team can help design a solution that fits your needs.
+                  {t("enterpriseSolutionsDesc")}
                 </p>
               </div>
             </motion.div>
@@ -105,7 +107,7 @@ const Contact = () => {
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium mb-2">
-                        Name
+                        {t("name")}
                       </label>
                       <Input
                         id="name"
@@ -113,14 +115,14 @@ const Contact = () => {
                         onChange={(e) =>
                           setFormData({ ...formData, name: e.target.value })
                         }
-                        placeholder="Your name"
+                        placeholder={t("namePlaceholder")}
                         required
                       />
                     </div>
 
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium mb-2">
-                        Email
+                        {t("email")}
                       </label>
                       <Input
                         id="email"
@@ -129,14 +131,14 @@ const Contact = () => {
                         onChange={(e) =>
                           setFormData({ ...formData, email: e.target.value })
                         }
-                        placeholder="your@email.com"
+                        placeholder={t("emailPlaceholder")}
                         required
                       />
                     </div>
 
                     <div>
                       <label htmlFor="message" className="block text-sm font-medium mb-2">
-                        Message
+                        {t("message")}
                       </label>
                       <Textarea
                         id="message"
@@ -144,14 +146,14 @@ const Contact = () => {
                         onChange={(e) =>
                           setFormData({ ...formData, message: e.target.value })
                         }
-                        placeholder="Tell us how we can help..."
+                        placeholder={t("messagePlaceholder")}
                         rows={5}
                         required
                       />
                     </div>
 
                     <Button type="submit" className="w-full">
-                      Send Message
+                      {t("sendMessage")}
                     </Button>
                   </form>
                 ) : (
@@ -163,9 +165,9 @@ const Contact = () => {
                     <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                       <Check className="h-8 w-8 text-primary" />
                     </div>
-                    <h3 className="text-xl font-semibold mb-2">Message sent!</h3>
+                    <h3 className="text-xl font-semibold mb-2">{t("messageSentTitle")}</h3>
                     <p className="text-muted-foreground">
-                      We'll get back to you as soon as possible.
+                      {t("messageSentDesc")}
                     </p>
                   </motion.div>
                 )}
