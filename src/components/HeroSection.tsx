@@ -38,17 +38,17 @@ export const HeroSection = () => {
             <img src={safetLogo} alt="SafeT" className="h-16 w-auto" />
           </motion.div>
 
-          <h1 className="mb-6 text-6xl font-bold tracking-tight text-foreground md:text-7xl lg:text-8xl overflow-hidden">
-            <span className="block sm:whitespace-nowrap">
+          <h1 className="mb-6 text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-foreground">
+            <span className="block">
               {t("heroTitle1")} {" "}
-              <span className="inline-block min-w-[160px] sm:min-w-[200px] md:min-w-[280px] lg:min-w-[320px]">
+              <span className="inline-flex flex-wrap justify-center w-full max-w-full">
                 <motion.span
                   key={currentWord}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.5 }}
-                  className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"
+                  className="inline-block min-w-fit overflow-visible text-center bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"
                 >
                   {t(words[currentWord])}
                 </motion.span>
