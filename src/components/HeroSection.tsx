@@ -10,7 +10,7 @@ export const HeroSection = () => {
   const { t } = useLanguage();
   const words = ["secure", "fast", "intelligent", "transparent"];
   const [currentWord, setCurrentWord] = useState(0);
-  const isTransparent = words[currentWord] === "transparent";
+  
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -39,40 +39,22 @@ export const HeroSection = () => {
           </motion.div>
 
           <h1 className="mb-6 text-6xl font-bold tracking-tight text-foreground md:text-7xl lg:text-8xl">
-            {t("heroTitle1")} {" "}
-            {!isTransparent ? (
-              <>
-                <span className="inline-block whitespace-nowrap min-w-[220px] md:min-w-[300px]">
-                  <motion.span
-                    key={currentWord}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.5 }}
-                    className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"
-                  >
-                    {t(words[currentWord])}
-                  </motion.span>
-                </span>
-                <br />
-                {t("heroTitle2")}
-              </>
-            ) : (
-              <>
-                <br />
+            <span className="block whitespace-nowrap">
+              {t("heroTitle1")} {" "}
+              <span className="inline-block whitespace-nowrap min-w-[240px] md:min-w-[320px]">
                 <motion.span
-                  key={`${currentWord}-second-line`}
+                  key={currentWord}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.5 }}
-                  className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent whitespace-nowrap"
+                  className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"
                 >
                   {t(words[currentWord])}
-                </motion.span>{" "}
-                {t("heroTitle2")}
-              </>
-            )}
+                </motion.span>
+              </span>
+            </span>
+            <span className="block">{t("heroTitle2")}</span>
           </h1>
 
           <motion.p
