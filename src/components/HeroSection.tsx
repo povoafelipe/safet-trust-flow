@@ -54,6 +54,7 @@ export const HeroSection = () => {
                 </motion.span>
               </span>
             </span>
+            {t("heroTitle2") && t("heroTitle2") !== "" && <span className="block">{t("heroTitle2")}</span>}
           </h1>
 
           <motion.p
