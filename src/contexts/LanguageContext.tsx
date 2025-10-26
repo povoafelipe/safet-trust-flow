@@ -178,7 +178,7 @@ const translations = {
     getStarted: "Começar",
     
     // Hero
-    heroTitle1: "Torne sua transação mais",
+    heroTitle1: "Sua transação mais",
     heroTitle2: "",
     heroSubtitle: "A infraestrutura de custódia digital que mantém pagamentos seguros até que o negócio seja concluído.",
     startIntegrating: "Começar Integração",
