@@ -41,20 +41,22 @@ export const HeroSection = () => {
           <h1 className="mb-6 text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-foreground">
             <span className="block">
               {t("heroTitle1")} {" "}
-              <span className="inline-flex flex-wrap justify-center w-full max-w-full">
+              <span className="inline-flex flex-wrap justify-center max-w-full">
                 <motion.span
                   key={currentWord}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.5 }}
-                  className="inline-block min-w-fit overflow-visible text-center bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"
+                  className="inline-block min-w-[200px] sm:min-w-[220px] md:min-w-[260px] lg:min-w-[300px] overflow-visible text-center bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"
                 >
                   {t(words[currentWord])}
                 </motion.span>
               </span>
             </span>
-            {t("heroTitle2") && t("heroTitle2") !== "" && <span className="block">{t("heroTitle2")}</span>}
+            {t("heroTitle2") !== "heroTitle2" && t("heroTitle2") !== "" && (
+              <span className="block">{t("heroTitle2")}</span>
+            )}
           </h1>
 
           <motion.p
