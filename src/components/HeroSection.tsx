@@ -11,6 +11,8 @@ export const HeroSection = () => {
   const words = ["secure", "fast", "transparent", "intelligent"];
   const [currentWord, setCurrentWord] = useState(0);
   
+  const heroTitle2Value = t("heroTitle2");
+  const hasHeroTitle2 = heroTitle2Value && heroTitle2Value.trim() !== "" && heroTitle2Value !== "heroTitle2";
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -38,24 +40,22 @@ export const HeroSection = () => {
             <img src={safetLogo} alt="SafeT" className="h-16 w-auto" />
           </motion.div>
 
-          <h1 className="mb-6 text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-foreground">
-            <span className="block">
-              {t("heroTitle1")} {" "}
-              <span className="inline-flex flex-wrap justify-center max-w-full">
-                <motion.span
-                  key={currentWord}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.5 }}
-                  className="inline-block min-w-[200px] sm:min-w-[220px] md:min-w-[260px] lg:min-w-[300px] overflow-visible text-center bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"
-                >
-                  {t(words[currentWord])}
-                </motion.span>
-              </span>
+          <h1 className="mb-6 text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-foreground text-balance overflow-hidden">
+            <span className="block leading-tight">
+              {t("heroTitle1")}{" "}
+              <motion.span
+                key={currentWord}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5 }}
+                className="inline-block min-w-[240px] sm:min-w-[280px] md:min-w-[320px] lg:min-w-[360px] text-center bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent align-middle"
+              >
+                {t(words[currentWord])}
+              </motion.span>
             </span>
-            {t("heroTitle2") !== "heroTitle2" && t("heroTitle2") !== "" && (
-              <span className="block">{t("heroTitle2")}</span>
+            {hasHeroTitle2 && (
+              <span className="block leading-tight">{heroTitle2Value}</span>
             )}
           </h1>
 
