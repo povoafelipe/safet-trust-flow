@@ -8,7 +8,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 export const HeroSection = () => {
   const { t } = useLanguage();
-  const words = ["secure", "fast", "intelligent", "transparent"];
+  const words = ["secure", "fast", "transparent", "intelligent"];
   const [currentWord, setCurrentWord] = useState(0);
   
 
@@ -54,7 +54,7 @@ export const HeroSection = () => {
                 </motion.span>
               </span>
             </span>
-            <span className="block">{t("heroTitle2")}</span>
+            {t("heroTitle2") && <span className="block">{t("heroTitle2")}</span>}
           </h1>
 
           <motion.p

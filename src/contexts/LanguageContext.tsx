@@ -178,17 +178,17 @@ const translations = {
     getStarted: "Começar",
     
     // Hero
-    heroTitle1: "Confie em cada",
-    heroTitle2: "transação",
-    heroSubtitle: "A infraestrutura de escrow digital que mantém pagamentos seguros até que o negócio seja concluído.",
+    heroTitle1: "Torne sua transação mais",
+    heroTitle2: "",
+    heroSubtitle: "A infraestrutura de custódia digital que mantém pagamentos seguros até que o negócio seja concluído.",
     startIntegrating: "Começar Integração",
     seeHowItWorks: "Veja Como Funciona",
     
     // Animated words
     secure: "segura",
-    fast: "rápida",
-    transparent: "transparente",
-    intelligent: "inteligente",
+    fast: "simples",
+    transparent: "clara",
+    intelligent: "confiável",
     beautiful: "bonita",
     
     // Value Proposition
