@@ -41,14 +41,14 @@ export const HeroSection = () => {
           <h1 className="mb-6 text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-foreground">
             <span className="block">
               {t("heroTitle1")} {" "}
-              <span className="inline-flex justify-center mx-auto">
+              <span className="inline-flex justify-center h-[100px] overflow-hidden">
                 <motion.span
                   key={currentWord}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.5 }}
-                  className="inline-block min-w-fit text-center bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent w-[450px]"
+                  className="inline-block min-w-fit text-center bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent w-[600px] whitespace-nowrap"
                 >
                   {t(words[currentWord])}
                 </motion.span>
