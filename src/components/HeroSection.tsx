@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
@@ -10,12 +10,11 @@ export const HeroSection = () => {
   const { t } = useLanguage();
   const words = ["secure", "fast", "transparent", "intelligent"];
   const [currentWord, setCurrentWord] = useState(0);
-  
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentWord((prev) => (prev + 1) % words.length);
-    }, 4000);
+    }, 3000);
     return () => clearInterval(interval);
   }, []);
 
@@ -38,23 +37,40 @@ export const HeroSection = () => {
             <img src={safetLogo} alt="SafeT" className="h-16 w-auto" />
           </motion.div>
 
-          <h1 className="mb-6 text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-foreground">
-            <span className="block">
-              {t("heroTitle1")} {" "}
-              <span className="inline-flex justify-center h-[100px] overflow-hidden">
-                <motion.span
-                  key={currentWord}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.5 }}
-                  className="inline-block min-w-fit text-center bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent w-[600px] whitespace-nowrap"
+          <h1 className="mb-6 text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-foreground leading-[1.15]">
+            <div className="text-center">
+              <span className="inline">
+                {t("heroTitle1")}{" "}
+                <span
+                  className="inline-block relative align-baseline"
+                  style={{ paddingBottom: "0.05em" }}
                 >
-                  {t(words[currentWord])}
-                </motion.span>
+                  <AnimatePresence mode="wait" initial={false}>
+                    <motion.span
+                      key={currentWord}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{
+                        duration: 0.4,
+                        ease: [0.4, 0, 0.2, 1],
+                      }}
+                      className="inline-block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"
+                      style={{
+                        display: "inline-block",
+                        lineHeight: "1.2",
+                        paddingBottom: "0.1em",
+                      }}
+                    >
+                      {t(words[currentWord])}
+                    </motion.span>
+                  </AnimatePresence>
+                </span>
+                {t("heroTitle2") &&
+                  t("heroTitle2").trim() &&
+                  ` ${t("heroTitle2")}`}
               </span>
-            </span>
-            {t("heroTitle2") && <span className="block">{t("heroTitle2")}</span>}
+            </div>
           </h1>
 
           <motion.p
