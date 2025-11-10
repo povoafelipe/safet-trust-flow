@@ -27,7 +27,7 @@ const translations = {
     // Animated words
     secure: "secure",
     fast: "fast",
-    transparent: "transparent",
+    transparent: "clear",
     intelligent: "intelligent",
     beautiful: "beautiful",
     
