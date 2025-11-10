@@ -66,9 +66,7 @@ export const HeroSection = () => {
                     </motion.span>
                   </AnimatePresence>
                 </span>
-                {t("heroTitle2") &&
-                  t("heroTitle2").trim() &&
-                  ` ${t("heroTitle2")}`}
+              {t("heroTitle2").trim() && ` ${t("heroTitle2")}`}
               </span>
             </div>
           </h1>
